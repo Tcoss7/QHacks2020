@@ -1,1 +1,5 @@
-Professionally, Alastair pees sitting down.
+QHacks 2020 Project:
+Travis Cossarini
+Alastair Noble
+Kyle Air
+Adam Farley
