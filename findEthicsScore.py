@@ -3,9 +3,11 @@ from bs4 import BeautifulSoup
 from requests_html import HTMLSession
 import re
 import requests
+import csv
+import pandas as pd
+import time
 
 corporate_critic_url = "http://www.corporatecritic.org/companies.aspx"
-product_url = 'https://www.amazon.ca/dp/B07L3R93F2?aaxitk=xL8buRWZjNlIiQISzOBT2A&pd_rd_i=B07L3R93F2&pf_rd_p=aa0a7a36-9d2d-49bd-b59d-ceef667a2a55&hsa_cr_id=6969753180801&sb-ci-n=asinImage&sb-ci-v=https%3A%2F%2Fm.media-amazon.com%2Fimages%2FI%2F81lQp%2BbmaSL.jpg&sb-ci-a=B07L3R93F2'
 
 
 def find_company(url):
@@ -15,7 +17,6 @@ def find_company(url):
     # keyword bylineinfo
     try:
         compName = soup.find(id="bylineInfo").text
-        print(soup.prettify)
     except:
         #print("exception code")
         session = HTMLSession()
@@ -47,7 +48,24 @@ def corporate_critic(companyName):
         ethicsScore = -1
 
     return ethicsScore
+filename = 'Extension/passData.csv'
+
+while True:
+	time.sleep(2)
+	try:
+		df = pd.read_csv(filename)
+		product_url = ''
+		for entry in df:
+			product_url+=entry
+		final_ethics_score = corporate_critic(find_company(product_url))
+		
+		f = open(filename, "w+")
+		f.close()
+	except:
+		print("lol")
 
 
-final_ethics_score = corporate_critic(find_company(product_url))
-print(final_ethics_score)
+	
+
+#final_ethics_score = corporate_critic(find_company(product_url))
+#print(final_ethics_score
