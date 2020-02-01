@@ -9,11 +9,7 @@ var ethicScore;
 
 chrome.tabs.query({active: true, lastFocusedWindow: true}, function (tabs) {
 
-
 	url = tabs[0].url;
-
-		
-	$.post("local", url, function(){	});
 
 
 	console.log(url);
@@ -33,7 +29,8 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function (tabs) {
 			color = 'lightred';
 		}
 	}
-	   		
+	document.getElementById('kyleair').innerHTML = url;
+
 	document.getElementById('ethicstext').innerHTML = text;
 	document.body.style.backgroundColor = color;
 
