@@ -13,7 +13,7 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function (tabs) {
 	url = tabs[0].url;
 
 		
-	$.post("receiver", url, function(){	});
+	$.post("local", url, function(){	});
 
 
 	console.log(url);
