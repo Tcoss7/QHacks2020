@@ -8,6 +8,7 @@ import pandas as pd
 import time
 
 corporate_critic_url = "http://www.corporatecritic.org/companies.aspx"
+amazon_url = 'https://www.amazon.ca/Nike-Black-Light-Brown-Basketball/dp/B077K81QDB/ref=sr_1_3?dchild=1&keywords=kobes&qid=1580603213&sr=8-3'
 
 
 def find_company(url):
@@ -43,29 +44,16 @@ def corporate_critic(companyName):
         ethicsScore = re.sub(chr(10), '', ethicsScore)
         ethicsScore = re.sub('\)', '', ethicsScore)
         ethicsScore = re.sub('\(', '', ethicsScore)
-        print(ethicsScore)
     except:
         ethicsScore = -1
 
     return ethicsScore
 filename = 'Extension/passData.csv'
 
-while True:
-	time.sleep(2)
-	try:
-		df = pd.read_csv(filename)
-		product_url = ''
-		for entry in df:
-			product_url+=entry
-		final_ethics_score = corporate_critic(find_company(product_url))
-		
-		f = open(filename, "w+")
-		f.close()
-	except:
-		print("lol")
+company_name = find_company(amazon_url)
+print(company_name+ ": ")
+score = corporate_critic(company_name)
+print("\t" + score)
 
 
-	
 
-#final_ethics_score = corporate_critic(find_company(product_url))
-#print(final_ethics_score
