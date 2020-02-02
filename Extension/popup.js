@@ -1,7 +1,9 @@
 'use strict';
-
 //me
-//let checkEthics = document.getElementById('checkEthics');//button
+//var webdriver = require('selenium-webdriver'),
+//	SeleniumServer = require('selenium-webdriver/remote').SeleniumServer;
+
+//const {Builder, By, Key, Until} = require('selenium-webdriver');
 
 var url;
 var text, color;
@@ -11,10 +13,11 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function (tabs) {
 
 	url = tabs[0].url;
 
+	
+	//console.log(getEthicsScore());
 
-	console.log(url);
 
-	var ethicScore = 11;//=kyles code;
+	var ethicScore = Math.floor(Math.random() * Math.floor(15));//=kyles code;
 
 	if(ethicScore<0){
 		color = 'white';
@@ -25,8 +28,8 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function (tabs) {
 			color = 'lightgreen';
 		}else if(ethicScore>5){
 			color = 'lightyellow';
-		} else if(ethicScore>=0){
-			color = 'lightred';
+		} else {
+			color = 'red';
 		}
 	}
 	document.getElementById('kyleair').innerHTML = url;
@@ -35,7 +38,38 @@ chrome.tabs.query({active: true, lastFocusedWindow: true}, function (tabs) {
 	document.body.style.backgroundColor = color;
 
 });
+/*
+(async function example() {
+	let driver = await new Builder().forBrowser('chrome').build();
+	try {
+		await driver.get(url);
+	} finally {
+		await driver.quit();
+	}
+})();
+/*
+async function getEthicsScore(){
+	try{ 
+		var driver = new webdriver.Builder()
+        .forBrowser('chrome')
+        .withCapabilities(webdriver.Capabilities.chrome())
+		.build();
+		
+		await driver.get(url);
 
+		await driver.getTitle().then(function(title){
+			console.log("the title is" + title)
+		});
+
+		driver.quit();
+
+	}
+	catch(err){
+		console.error('fuck you ', err.stack, '\n');
+		driver.quit();
+	}
+}
+*/
 	/*
 checkEthics.onclick = function(element) {
 
