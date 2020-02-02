@@ -18,6 +18,7 @@ def pollCorpCritic(searchTerm):
 
     try:
         ethiScoreElement = driver.find_element_by_class_name("resultlistethiscore").text
+        print(ethiScoreElement)
         return ethiScoreElement
     except:
         return -1
